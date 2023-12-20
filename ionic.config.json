@@ -1,0 +1,8 @@
+{
+  "name": "ramen",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "840bb14d"
+}
