@@ -1,0 +1,15 @@
+ion-card {
+    margin: auto;
+    width: 320px;
+    height: 250px;
+}
+
+ion-card img {
+    object-fit: cover;
+}    
+
+ion-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

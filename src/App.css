@@ -1,0 +1,5 @@
+/* @import url("theme/variables.css"); */
+
+ion-tab-button  {
+    --color-selected: var(--ion-color-primary);
+}
