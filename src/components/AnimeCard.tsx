@@ -73,7 +73,7 @@ function AnimeCard(props: { animeid: string; image: string | undefined; title: s
                     </IonItem>
                     <IonList>
                         {result?.episodes?.map((episode, index) => (
-                            <AnimeEpisode key={result.id} episodeId={episode.id} episodeIndex={index}></AnimeEpisode>
+                            <AnimeEpisode key={episode.id} episodeId={episode.id} episodeIndex={index}></AnimeEpisode>
                         ))}
                     </IonList>
                 </IonContent>
