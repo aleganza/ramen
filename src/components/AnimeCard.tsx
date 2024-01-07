@@ -31,7 +31,7 @@ function AnimeCard(props: { animeid: string; image: string | undefined; title: s
     const [result, setResult] = useState<IAnimeInfo>();
 
     const getAnimeData = () => {
-        const as = new ANIME.AnimeSaturn({ url: utils.proxyUrl })
+        const as = new ANIME.AnimeUnity({ url: utils.proxyUrl })
         console.log(props.animeid)
         const response = as.fetchAnimeInfo(props.animeid).then(data => {
             console.log(data)
@@ -40,19 +40,17 @@ function AnimeCard(props: { animeid: string; image: string | undefined; title: s
     }
 
     useEffect(() => {
-        if (isOpen) {
-            getAnimeData()
-        }
+        if (isOpen) getAnimeData()
     }, [isOpen])
 
     return (
         <>
-            <IonCard button={true} id={`${props.animeid}`} onClick={() => setIsOpen(true)}>
-                <img alt="anime-image" src={props.image} />
-                <IonCardHeader>
-                    <IonCardTitle>{props.title}</IonCardTitle>
-                </IonCardHeader>
-            </IonCard>
+            <div className="anime-card-wrapper" id={`${props.animeid}`} onClick={() => setIsOpen(true)}>
+                <div className="anime-card">
+                    <img alt="anime-image" src={props.image} />
+                    <h1>{props.title}</h1>
+                </div>
+            </div>
             <IonModal ref={modal} trigger={`${props.animeid}`} isOpen={isOpen}>
                 <IonHeader>
                     <IonToolbar>
@@ -70,7 +68,7 @@ function AnimeCard(props: { animeid: string; image: string | undefined; title: s
                     <IonItem>
                         <IonImg
                             src={props.image}
-                            alt="The Wisconsin State Capitol building in Madison, WI at night"
+                            alt="anime image"
                         ></IonImg>
                     </IonItem>
                     <IonList>

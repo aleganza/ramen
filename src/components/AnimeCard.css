@@ -13,3 +13,32 @@ ion-card-header {
     justify-content: center;
     align-items: center;
 }
+
+.anime-card-wrapper {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.anime-card {
+    width: 120px;
+    border-radius: 5px;
+}
+
+.anime-card img {
+    height: 143px;
+    aspect-ratio: 1.43 / 1;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.anime-card h1 {
+    font-size: 0.9rem;
+    margin: 0;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

@@ -1,5 +1,3 @@
-import { AnimeSaturn } from '../modules/animesaturn'
-
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { ANIME } from '@consumet/extensions'
@@ -16,7 +14,8 @@ const Tab1: React.FC = () => {
         const target = e.target as HTMLIonSearchbarElement;
         if (!target.value) return
 
-        const as = new ANIME.AnimeSaturn({ url: utils.proxyUrl })
+        const as = new ANIME.AnimeUnity({ url: utils.proxyUrl })
+
         const response = as.search(target.value?.toString()).then(data => {
             console.log(data.results)
             setResults(data.results)
@@ -30,16 +29,16 @@ const Tab1: React.FC = () => {
             <IonContent fullscreen className="ion-padding">
                 <IonHeader collapse="condense">
                     <IonToolbar>
-                        <IonTitle size="large">Tab 1</IonTitle>
+                        <IonTitle size="large">Search</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonSearchbar animated={true} placeholder="Search..." debounce={500} onIonInput={(e) => getSearchedAnime(e)}></IonSearchbar>
-
-                {results?.map((result) => (
-                    <AnimeCard key={result.id} animeid={result.id.toString()} title={result.title.toString()} image={result.image}>
-                    </AnimeCard>
-                ))}
-
+                <div className="searched-content">
+                    {results?.map((result) => (
+                        <AnimeCard key={result.id} animeid={result.id.toString()} title={result.title.toString()} image={result.image}>
+                        </AnimeCard>
+                    ))}
+                </div>
             </IonContent>
         </IonPage>
     );
