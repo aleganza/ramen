@@ -46,7 +46,13 @@ const Tab1: React.FC = () => {
                 <IonSearchbar animated={true} placeholder="Search..." debounce={500} onIonInput={(e) => getSearchedAnime(e)}></IonSearchbar>
                 <div className="searched-content">
                     {results?.map((result) => (
-                        <AnimeCard key={result.id} animeid={result.id.toString()} title={result.title.toString()} image={result.image} displayDub={toggleState} isDub={result.subOrDub}>
+                        <AnimeCard 
+                            key={result.id} 
+                            animeid={result.id.toString()} 
+                            title={result.title.toString()} 
+                            image={result.image} 
+                            displayDub={toggleState} 
+                            isDub={result.subOrDub}>
                         </AnimeCard>
                     ))}
                 </div>

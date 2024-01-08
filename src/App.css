@@ -3,3 +3,7 @@
 ion-tab-button  {
     --color-selected: var(--ion-color-primary);
 }
+
+ion-tab-button:active {
+    transform: scale(0.92)
+}

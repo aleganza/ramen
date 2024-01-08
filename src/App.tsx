@@ -10,7 +10,7 @@ import {
     setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { searchOutline, libraryOutline } from 'ionicons/icons';
+import { search, library } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 
@@ -56,11 +56,11 @@ const App: React.FC = () => (
                 </IonRouterOutlet>
                 <IonTabBar slot="bottom">
                     <IonTabButton tab="tab1" href="/tab1">
-                        <IonIcon aria-hidden="true" icon={searchOutline} />
+                        <IonIcon aria-hidden="true" icon={search} />
                         {/* <IonLabel>Discover</IonLabel> */}
                     </IonTabButton>
                     <IonTabButton tab="tab2" href="/tab2">
-                        <IonIcon aria-hidden="true" icon={libraryOutline} />
+                        <IonIcon aria-hidden="true" icon={library} />
                         {/* <IonLabel>Library</IonLabel> */}
                     </IonTabButton>
                 </IonTabBar>
