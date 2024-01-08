@@ -1,3 +1,13 @@
+ion-toolbar {
+    position: relative;
+}
+
+ion-toggle {
+    position: absolute;
+    top: 20%;
+    right: 0;
+}
+
 .searched-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, 100px);
