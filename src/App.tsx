@@ -3,6 +3,7 @@ import {
     IonApp,
     IonIcon,
     IonLabel,
+    IonNav,
     IonRouterOutlet,
     IonTabBar,
     IonTabButton,
@@ -35,8 +36,7 @@ import './theme/variables.css';
 import './App.css'
 
 setupIonicReact({
-    // rippleEffect: false,
-    mode: 'ios',
+    mode: 'ios'
 });
 
 const App: React.FC = () => (
@@ -45,7 +45,7 @@ const App: React.FC = () => (
             <IonTabs>
                 <IonRouterOutlet>
                     <Route exact path="/tab1">
-                        <Tab1 />
+                        <IonNav root={() => <Tab1 />}></IonNav>
                     </Route>
                     <Route exact path="/tab2">
                         <Tab2 />

@@ -1,6 +1,7 @@
 import './AnimeCard.css';
 
 import {
+    IonBackButton,
     IonButton,
     IonButtons,
     IonCard,
@@ -23,9 +24,9 @@ import { utils } from '../modules/utils'
 import { ANIME } from '@consumet/extensions';
 import { IAnimeInfo } from '@consumet/extensions'
 
-import AnimeEpisode from '../components/AnimeEpisode'
+import AnimeEpisode from './AnimeEpisode'
 
-function AnimeCard(props: { animeid: string; image: string | undefined; title: string; displayDub: boolean; isDub: string }) {
+function AnimePage(props: { animeid: string; image: string | undefined; title: string; displayDub: boolean; isDub: string }) {
     const modal = useRef<HTMLIonModalElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [result, setResult] = useState<IAnimeInfo>();
@@ -43,17 +44,31 @@ function AnimeCard(props: { animeid: string; image: string | undefined; title: s
         if (isOpen) getAnimeData()
     }, [isOpen])
 
-    if (props.displayDub && props.isDub === 'dub'
-        || !props.displayDub && props.isDub === 'sub') {
-        return (
-            <>
-                <div className="anime-card-wrapper" id={`${props.animeid}`} onClick={() => setIsOpen(true)}>
-                    <div className="anime-card">
-                        <img alt="anime-image" src={props.image} />
-                        <h1>{props.title}</h1>
-                    </div>
-                </div>
-                <IonModal ref={modal} trigger={`${props.animeid}`} isOpen={isOpen}>
+
+    return (
+        <>
+            <IonHeader>
+                <IonToolbar>
+                    <IonButtons slot="start">
+                        <IonBackButton></IonBackButton>
+                    </IonButtons>
+                    <IonTitle>{props.title}</IonTitle>
+                </IonToolbar>
+            </IonHeader>
+            <IonContent className="ion-padding">
+                <IonItem>
+                    <IonImg
+                        src={props.image}
+                        alt="anime image"
+                    ></IonImg>
+                </IonItem>
+                <IonList>
+                    {result?.episodes?.map((episode, index) => (
+                        <AnimeEpisode key={episode.id} episodeId={episode.id} episodeIndex={index}></AnimeEpisode>
+                    ))}
+                </IonList>
+            </IonContent>
+            {/* <IonModal ref={modal} trigger={`${props.animeid}`} isOpen={isOpen}>
                     <IonHeader>
                         <IonToolbar>
                             <IonTitle>
@@ -79,10 +94,9 @@ function AnimeCard(props: { animeid: string; image: string | undefined; title: s
                             ))}
                         </IonList>
                     </IonContent>
-                </IonModal>
-            </>
-        );
-    }
+                </IonModal> */}
+        </>
+    );
 }
 
-export default AnimeCard;
+export default AnimePage;
