@@ -1,3 +1,4 @@
 export let utils = {
-    proxyUrl: 'https://cors-anywhere.herokuapp.com/'
+    proxyUrl: 'https://corsproxy.io/?'
+    // proxyUrl: 'https://cors-anywhere.herokuapp.com/'
 }
