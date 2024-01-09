@@ -1,21 +1,20 @@
 import './AnimeEpisode.css';
 
-import { IonItem, IonLabel } from '@ionic/react';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { ANIME } from '@consumet/extensions';
 import { utils } from '../modules/utils';
 
-import { Player, Hls } from '@vime/react';
-
-// import axios, { AxiosRequestConfig } from 'axios'
-
-import '@vime/core/themes/default.css';
 import ReactHlsPlayer from 'react-hls-player';
 
 function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
     const [episodeSource, setEpisodeSource] = useState<string>('');
-    const [testTitle, setTestTitle] = useState<string>(props.episodeIndex.toString());
+    const [playerClassName, setPlayerClassName] = useState("hide");
+    const playerRef = useRef(null);
+
+    useEffect(() => {
+        console.log(playerRef?.current)
+    }, []);
 
     const loadEpisode = () => {
         console.log(props.episodeId)
@@ -23,27 +22,28 @@ function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
 
         const response = as.fetchEpisodeSources(props.episodeId).then(data => {
             console.log(data.sources)
-            setTestTitle(data.sources[0].url.toString())
             setEpisodeSource(data.sources[0].url.toString())
+            setPlayerClassName('show')
+            playerRef?.current
         })
     }
 
     return (
         <>
-            <div  
-                id={props.episodeId} 
+            <div
+                id={props.episodeId}
                 onClick={loadEpisode}
                 className="episode"
             >
                 {props.episodeIndex}
             </div>
             <ReactHlsPlayer
-                className=''
+                className={playerClassName}
                 src={episodeSource}
                 autoPlay={true}
                 controls={true}
                 width="100%"
-                height="auto"
+                height="100%" playerRef={playerRef}
             />
         </>
     )

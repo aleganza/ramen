@@ -7,13 +7,11 @@ import {
     IonContent,
     IonHeader,
     IonImg,
-    IonItem,
-    IonList,
     IonSearchbar,
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { utils } from '../modules/utils';
 import AnimeEpisode from './AnimeEpisode';
