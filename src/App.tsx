@@ -12,7 +12,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { search, library } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
+import Tab1 from './pages/Tab1'
 import Tab2 from './pages/Tab2';
 
 /* Core CSS required for Ionic components to work properly */
@@ -48,7 +48,7 @@ const App: React.FC = () => (
                         <IonNav root={() => <Tab1 />}></IonNav>
                     </Route>
                     <Route exact path="/tab2">
-                        <Tab2 />
+                        <IonNav root={() => <Tab2 />}></IonNav>
                     </Route>
                     <Route exact path="/">
                         <Redirect to="/tab1" />

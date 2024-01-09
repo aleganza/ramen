@@ -11,3 +11,9 @@ ion-img.cover {
     grid-gap: 10px;
     justify-content: center;
 }
+
+ion-list {
+    margin-top: 12px;
+    text-align: center;
+    background-color: transparent !important;
+}

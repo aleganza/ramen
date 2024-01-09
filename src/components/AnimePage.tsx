@@ -3,21 +3,27 @@ import './AnimePage.css';
 import { ANIME, IAnimeInfo } from '@consumet/extensions';
 import {
     IonBackButton,
+    IonButton,
     IonButtons,
     IonContent,
     IonHeader,
+    IonIcon,
     IonImg,
+    IonList,
     IonSearchbar,
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
+import { bookmarkOutline, checkmark } from 'ionicons/icons';
 
 import { utils } from '../modules/utils';
 import AnimeEpisode from './AnimeEpisode';
+import { Preferences } from '@capacitor/preferences';
 
 function AnimePage(props: { animeid: string; image: string | undefined; title: string }) {
     const [result, setResult] = useState<IAnimeInfo>();
+    const [isInLIbrary, setIsInLibrary] = useState(false)
 
     const getAnimeData = () => {
         const as = new ANIME.AnimeUnity({ url: utils.proxyUrl })
@@ -33,14 +39,42 @@ function AnimePage(props: { animeid: string; image: string | undefined; title: s
         const target = ev.target as HTMLIonSearchbarElement;
         if (target) query = target.value!.toLowerCase();
 
-
-
         // setResult(data.filter((d: string) => d.toLowerCase().indexOf(query) > -1));
+    };
+
+    // store
+    const checkLibrary = async () => {
+        const { value } = await Preferences.get({ key: props.animeid });
+
+        if (value === null) setIsInLibrary(false)
+        else setIsInLibrary(true)
     };
 
     useEffect(() => {
         getAnimeData()
+        checkLibrary()
     }, [])
+
+    const addToLibrary = async () => {
+        setIsInLibrary(true)
+
+        await Preferences.set({
+            key: props.animeid,
+            value: JSON.stringify(
+                    {
+                        id: props.animeid,
+                        image: props.image,
+                        title: props.title
+                    }
+                ),
+        });
+    }
+
+    const removeFromLibrary = async () => {
+        setIsInLibrary(false)
+
+        await Preferences.remove({ key: props.animeid });
+    }
 
     return (
         <>
@@ -58,6 +92,25 @@ function AnimePage(props: { animeid: string; image: string | undefined; title: s
                     src={props.image}
                     alt="anime image"
                 ></IonImg>
+                <IonList>
+                    {isInLIbrary
+                        ? <IonButton
+                            onClick={removeFromLibrary}
+                            size="small"
+                        >
+                            <IonIcon slot="start" aria-hidden="true" icon={checkmark} />
+                            In Library
+                        </IonButton>
+                        : <IonButton
+                            onClick={addToLibrary}
+                            size="small"
+                            fill="outline"
+                        >
+                            <IonIcon slot="start" aria-hidden="true" icon={bookmarkOutline} />
+                            Add to Library
+                        </IonButton>
+                    }
+                </IonList>
                 <IonSearchbar
                     animated={true}
                     placeholder="Search for episodes"

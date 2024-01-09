@@ -66,8 +66,7 @@ const Tab1: React.FC = () => {
                                 </IonNavLink>
                             )
                         }
-                    }
-                    )}
+                    })}
                 </div>
             </IonContent>
         </IonPage>

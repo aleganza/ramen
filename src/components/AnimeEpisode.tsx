@@ -12,10 +12,6 @@ function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
     const [playerClassName, setPlayerClassName] = useState("hide");
     const playerRef = useRef(null);
 
-    useEffect(() => {
-        console.log(playerRef?.current)
-    }, []);
-
     const loadEpisode = () => {
         console.log(props.episodeId)
         const as = new ANIME.AnimeUnity({ url: utils.proxyUrl })
@@ -24,7 +20,7 @@ function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
             console.log(data.sources)
             setEpisodeSource(data.sources[0].url.toString())
             setPlayerClassName('show')
-            playerRef?.current
+            console.log(playerRef?.current)
         })
     }
 
