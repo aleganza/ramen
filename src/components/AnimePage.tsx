@@ -1,5 +1,6 @@
 import './AnimePage.css';
 
+import { Preferences } from '@capacitor/preferences';
 import { ANIME, IAnimeInfo } from '@consumet/extensions';
 import {
     IonBackButton,
@@ -14,12 +15,11 @@ import {
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
-import React, { useEffect, useState } from 'react';
 import { bookmarkOutline, checkmark } from 'ionicons/icons';
+import { useEffect, useState } from 'react';
 
 import { utils } from '../modules/utils';
 import AnimeEpisode from './AnimeEpisode';
-import { Preferences } from '@capacitor/preferences';
 
 function AnimePage(props: { animeid: string; image: string | undefined; title: string }) {
     const [result, setResult] = useState<IAnimeInfo>();

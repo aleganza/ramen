@@ -1,6 +1,9 @@
-ion-img.cover {
+.cover {
     width: 200px;
     margin: auto;
+}
+
+ion-img::part(image) {
     border-radius: var(--border-radius);
 }
 

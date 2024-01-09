@@ -1,11 +1,11 @@
 import './AnimeEpisode.css';
 
-import React, { useEffect, useRef, useState } from 'react';
-
 import { ANIME } from '@consumet/extensions';
+import { useRef, useState } from 'react';
+
 import { utils } from '../modules/utils';
 
-import ReactHlsPlayer from 'react-hls-player';
+import ReactPlayer from 'react-player'
 
 function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
     const [episodeSource, setEpisodeSource] = useState<string>('');
@@ -30,13 +30,19 @@ function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
             >
                 {props.episodeIndex}
             </div>
-            <ReactHlsPlayer
+            <ReactPlayer
                 className={playerClassName}
-                src={episodeSource}
-                autoPlay={true}
+                ref={playerRef}
+                url={episodeSource}
+                playing={true}
+                config={{
+                    file: {
+                        forceHLS: true
+                    }
+                }}
                 controls={true}
                 width="100%"
-                height="100%" playerRef={playerRef}
+                height="100%"
             />
         </>
     )
