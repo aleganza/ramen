@@ -1,0 +1,13 @@
+ion-img.cover {
+    width: 200px;
+    margin: auto;
+    border-radius: var(--border-radius);
+    border-radius: 21px;
+}
+
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 75px);
+    grid-gap: 10px;
+    justify-content: center;
+}

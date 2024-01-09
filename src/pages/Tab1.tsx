@@ -42,7 +42,7 @@ const Tab1: React.FC = () => {
                             onIonChange={handleToggleChange}>Dub</IonToggle>
                     </IonToolbar>
                 </IonHeader>
-                <IonSearchbar animated={true} placeholder="Search..." debounce={500} onIonInput={(e) => getSearchedAnime(e)}></IonSearchbar>
+                <IonSearchbar animated={true} placeholder="Search for anime" debounce={500} onIonInput={(e) => getSearchedAnime(e)}></IonSearchbar>
                 <div className="searched-content">
                     {results?.map((result) => {
                         if (toggleState && result.subOrDub === 'dub'
@@ -53,9 +53,7 @@ const Tab1: React.FC = () => {
                                         <AnimePage
                                             animeid={result.id.toString()}
                                             title={result.title.toString()}
-                                            image={result.image}
-                                            displayDub={toggleState}
-                                            isDub={result.subOrDub}>
+                                            image={result.image}>
                                         </AnimePage>
                                     }
                                 >

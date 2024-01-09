@@ -8,10 +8,43 @@ ion-toggle {
     right: 0;
 }
 
+ion-nav-link:active {
+    filter: brightness(0.75);
+}
+
 .searched-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, 100px);
     grid-gap: 20px;
     justify-content: center;
-    margin: 12px;
+    margin: 12px 0;
+}
+
+.anime-card-wrapper {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.anime-card {
+    width: 120px;
+    border-radius: var(--border-radius);
+}
+
+.anime-card img {
+    height: 143px;
+    aspect-ratio: 1.43 / 1;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
+
+.anime-card h1 {
+    font-size: 0.9rem;
+    margin: 0;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

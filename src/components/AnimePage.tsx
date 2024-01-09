@@ -1,34 +1,24 @@
-import './AnimeCard.css';
+import './AnimePage.css';
 
+import { ANIME, IAnimeInfo } from '@consumet/extensions';
 import {
     IonBackButton,
-    IonButton,
     IonButtons,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
     IonContent,
     IonHeader,
-    IonIcon,
     IonImg,
     IonItem,
-    IonLabel,
     IonList,
-    IonModal,
+    IonSearchbar,
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
 import React, { useEffect, useRef, useState } from 'react';
-import { close } from 'ionicons/icons';
-import { utils } from '../modules/utils'
-import { ANIME } from '@consumet/extensions';
-import { IAnimeInfo } from '@consumet/extensions'
 
-import AnimeEpisode from './AnimeEpisode'
+import { utils } from '../modules/utils';
+import AnimeEpisode from './AnimeEpisode';
 
-function AnimePage(props: { animeid: string; image: string | undefined; title: string; displayDub: boolean; isDub: string }) {
-    const modal = useRef<HTMLIonModalElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
+function AnimePage(props: { animeid: string; image: string | undefined; title: string }) {
     const [result, setResult] = useState<IAnimeInfo>();
 
     const getAnimeData = () => {
@@ -40,14 +30,23 @@ function AnimePage(props: { animeid: string; image: string | undefined; title: s
         })
     }
 
-    useEffect(() => {
-        if (isOpen) getAnimeData()
-    }, [isOpen])
+    const filterEpisodes = (ev: Event) => {
+        let query = '';
+        const target = ev.target as HTMLIonSearchbarElement;
+        if (target) query = target.value!.toLowerCase();
 
+
+
+        // setResult(data.filter((d: string) => d.toLowerCase().indexOf(query) > -1));
+    };
+
+    useEffect(() => {
+        getAnimeData()
+    }, [])
 
     return (
         <>
-            <IonHeader>
+            <IonHeader translucent={true}>
                 <IonToolbar>
                     <IonButtons slot="start">
                         <IonBackButton></IonBackButton>
@@ -56,45 +55,22 @@ function AnimePage(props: { animeid: string; image: string | undefined; title: s
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                <IonItem>
-                    <IonImg
-                        src={props.image}
-                        alt="anime image"
-                    ></IonImg>
-                </IonItem>
-                <IonList>
+                <IonImg
+                    className='cover'
+                    src={props.image}
+                    alt="anime image"
+                ></IonImg>
+                <IonSearchbar
+                    animated={true}
+                    placeholder="Search for episodes"
+                    onIonInput={(ev) => filterEpisodes(ev)}
+                ></IonSearchbar>
+                <div className="episodes-grid">
                     {result?.episodes?.map((episode, index) => (
-                        <AnimeEpisode key={episode.id} episodeId={episode.id} episodeIndex={index}></AnimeEpisode>
+                        <AnimeEpisode key={episode.id} episodeId={episode.id} episodeIndex={index + 1}></AnimeEpisode>
                     ))}
-                </IonList>
+                </div>
             </IonContent>
-            {/* <IonModal ref={modal} trigger={`${props.animeid}`} isOpen={isOpen}>
-                    <IonHeader>
-                        <IonToolbar>
-                            <IonTitle>
-                                {result?.title.toString()}
-                            </IonTitle>
-                            <IonButtons slot="end">
-                                <IonButton onClick={() => setIsOpen(false)}>
-                                    <IonIcon aria-hidden="true" icon={close} />
-                                </IonButton>
-                            </IonButtons>
-                        </IonToolbar>
-                    </IonHeader>
-                    <IonContent className="ion-padding">
-                        <IonItem>
-                            <IonImg
-                                src={props.image}
-                                alt="anime image"
-                            ></IonImg>
-                        </IonItem>
-                        <IonList>
-                            {result?.episodes?.map((episode, index) => (
-                                <AnimeEpisode key={episode.id} episodeId={episode.id} episodeIndex={index}></AnimeEpisode>
-                            ))}
-                        </IonList>
-                    </IonContent>
-                </IonModal> */}
         </>
     );
 }

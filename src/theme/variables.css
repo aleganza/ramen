@@ -9,6 +9,8 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
+    --border-radius: 5px;
+
 	--ion-color-primary: #5D78ED;
 	--ion-color-primary-rgb: 93,120,237;
 	--ion-color-primary-contrast: #000000;

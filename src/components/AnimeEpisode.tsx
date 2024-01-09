@@ -1,3 +1,5 @@
+import './AnimeEpisode.css';
+
 import { IonItem, IonLabel } from '@ionic/react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -28,15 +30,15 @@ function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
 
     return (
         <>
-            <IonItem id={props.episodeId} button={true} onClick={loadEpisode}>
-                <IonLabel>{props.episodeIndex}</IonLabel>
-            </IonItem>
-            {/* <Player controls>
-                <Hls version="latest">
-                    <source data-src={episodeSource} type="application/x-mpegURL" />
-                </Hls>
-            </Player> */}
+            <div  
+                id={props.episodeId} 
+                onClick={loadEpisode}
+                className="episode"
+            >
+                {props.episodeIndex}
+            </div>
             <ReactHlsPlayer
+                className=''
                 src={episodeSource}
                 autoPlay={true}
                 controls={true}
