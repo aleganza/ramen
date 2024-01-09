@@ -13,14 +13,11 @@ function AnimeEpisode(props: { episodeId: string; episodeIndex: number }) {
     const playerRef = useRef(null);
 
     const loadEpisode = () => {
-        console.log(props.episodeId)
         const as = new ANIME.AnimeUnity({ url: utils.proxyUrl })
 
         const response = as.fetchEpisodeSources(props.episodeId).then(data => {
-            console.log(data.sources)
             setEpisodeSource(data.sources[0].url.toString())
             setPlayerClassName('show')
-            console.log(playerRef?.current)
         })
     }
 

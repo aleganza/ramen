@@ -16,7 +16,6 @@ const Tab2: React.FC = () => {
             data.push(JSON.parse(value || ''))
         }
 
-        console.log(data)
         setResults(data)
     };
 
@@ -33,10 +32,6 @@ const Tab2: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
                 <div className="searched-content">
-                    {/* {results?.map((result: any) => {
-                        console.log(result)
-                    })} */}
-
                     {results?.map((result: any) => (
                         <IonNavLink key={result.id} routerDirection="forward"
                             component={() =>

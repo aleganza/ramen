@@ -2,7 +2,6 @@ ion-img.cover {
     width: 200px;
     margin: auto;
     border-radius: var(--border-radius);
-    border-radius: 21px;
 }
 
 .episodes-grid {

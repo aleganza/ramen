@@ -27,9 +27,7 @@ function AnimePage(props: { animeid: string; image: string | undefined; title: s
 
     const getAnimeData = () => {
         const as = new ANIME.AnimeUnity({ url: utils.proxyUrl })
-        console.log(props.animeid)
         const response = as.fetchAnimeInfo(props.animeid).then(data => {
-            console.log(data)
             setResult(data)
         })
     }
